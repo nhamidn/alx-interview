@@ -6,6 +6,8 @@ pascal_triangle module.
 
 def pascal_triangle(n):
     """Function that prints the pascal triangle."""
+    if n <= 0:
+        return []
     lst = []
     for i in range(n):
         if i > 1:
