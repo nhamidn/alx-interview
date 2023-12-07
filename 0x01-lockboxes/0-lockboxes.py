@@ -13,7 +13,7 @@ def dfs(boxes, idx, visited):
 def canUnlockAll(boxes):
     """Function that check if all boxes can be opened."""
     n = len(boxes)
-    if n <= 1:
+    if n == 1:
         return True
     visited = [False] * n
     visited[0] = True
