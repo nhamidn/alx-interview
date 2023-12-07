@@ -17,7 +17,8 @@ def canUnlockAll(boxes):
         for key in boxes[idx]:
             if not visited[key]:
                 visited[key] = True
-                dfs(boxes, key, visited)
+                if not all(visited):
+                    dfs(boxes, key, visited)
 
     dfs(boxes, 0, visited)
 
