@@ -3,17 +3,23 @@
 
 
 def canUnlockAll(boxes):
-    """Function that checks if all boxes can be opened."""
+    """Function that check if all boxes can be opened."""
+    if (type(boxes)) is not list:
+        return False
     n = len(boxes)
     if n == 0:
         return False
-    seen_boxes = set([0])
-    unseen_boxes = set(boxes[0]).difference(set([0]))
-    while len(unseen_boxes) > 0:
-        boxIdx = unseen_boxes.pop()
-        if not boxIdx or boxIdx >= n or boxIdx < 0:
-            continue
-        if boxIdx not in seen_boxes:
-            unseen_boxes = unseen_boxes.union(boxes[boxIdx])
-            seen_boxes.add(boxIdx)
-    return n == len(seen_boxes)
+    visited = [False] * n
+    visited[0] = True
+
+    def dfs(boxes, idx, visited):
+        """Function that implement the dfs algorithm."""
+        for key in boxes[idx]:
+            if not visited[key]:
+                visited[key] = True
+                if not all(visited):
+                    dfs(boxes, key, visited)
+
+    dfs(boxes, 0, visited)
+
+    return all(visited)
