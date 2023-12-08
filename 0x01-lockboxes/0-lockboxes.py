@@ -3,6 +3,7 @@
 
 
 def canUnlockAll(boxes):
+    """Function that checks if all boxes can be opened."""
     n = len(boxes)
     if n == 0:
         return False
