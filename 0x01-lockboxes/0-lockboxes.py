@@ -15,7 +15,7 @@ def canUnlockAll(boxes):
     def dfs(boxes, idx, visited):
         """Function that implement the dfs algorithm."""
         for key in boxes[idx]:
-            if not visited[key] and key < n:
+            if key < n and not visited[key]:
                 visited[key] = True
                 if not all(visited):
                     dfs(boxes, key, visited)
