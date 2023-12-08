@@ -3,7 +3,7 @@
 
 
 def canUnlockAll(boxes):
-    """Function that check if all boxes can be opened."""
+    """Function that check if all boxes can be opened using bfs algorithm."""
     if (type(boxes)) is not list:
         return False
     n = len(boxes)
@@ -18,7 +18,4 @@ def canUnlockAll(boxes):
             if key not in unlocked_boxes:
                 unlocked_boxes.append(key)
                 queue.append(key)
-
-            pass
-        pass
     return n == len(unlocked_boxes)
