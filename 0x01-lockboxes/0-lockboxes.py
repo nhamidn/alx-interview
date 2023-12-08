@@ -4,10 +4,10 @@
 
 def canUnlockAll(boxes):
     """Function that check if all boxes can be opened."""
-    n = len(boxes)
     if (type(boxes)) is not list:
         return False
-    elif (len(boxes)) == 0:
+    n = len(boxes)
+    if n == 0:
         return False
     visited = [False] * n
     visited[0] = True
