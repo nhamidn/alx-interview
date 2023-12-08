@@ -3,7 +3,7 @@
 
 
 def canUnlockAll(boxes):
-    """Function that check if all boxes can be opened."""
+    """Function that check if all boxes can be opened using dfs algorithm."""
     if (type(boxes)) is not list:
         return False
     n = len(boxes)
@@ -17,8 +17,7 @@ def canUnlockAll(boxes):
         for key in boxes[idx]:
             if key < n and not visited[key]:
                 visited[key] = True
-                if not all(visited):
-                    dfs(boxes, key, visited)
+                dfs(boxes, key, visited)
 
     dfs(boxes, 0, visited)
 
