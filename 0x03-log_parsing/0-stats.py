@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Script that prints stats"""
 import sys
+import signal
 
 
 def print_stats():
@@ -14,32 +15,37 @@ codes = {}
 count = 0
 total_files_size = 0
 
-for line in sys.stdin:
-    count = count + 1
-    parts = line.split()
+try:
+    for line in sys.stdin:
+        count = count + 1
+        parts = line.split()
 
-    if len(parts) < 2:
-        continue
+        if len(parts) < 2:
+            continue
 
-    try:
-        size = int(parts[-1])
-    except ValueError:
-        continue
+        try:
+            size = int(parts[-1])
+        except ValueError:
+            continue
 
-    total_files_size += size
+        total_files_size += size
 
-    try:
-        status = int(parts[-2])
-    except ValueError:
-        continue
+        try:
+            status = int(parts[-2])
+        except ValueError:
+            continue
 
-    if status in codes:
-        codes[status] += 1
-    else:
-        codes[status] = 1
+        if status in codes:
+            codes[status] += 1
+        else:
+            codes[status] = 1
 
-    if count % 10 == 0:
-        print_stats()
+        if count % 10 == 0:
+            print_stats()
+
+except KeyboardInterrupt:
+    print_stats()
+    sys.exit(0)
 
 if count % 10 != 0 or count == 0:
     print_stats()
