@@ -41,5 +41,5 @@ for line in sys.stdin:
     if count % 10 == 0:
         print_stats()
 
-if count % 10 != 0:
+if count % 10 != 0 or count == 0:
     print_stats()
