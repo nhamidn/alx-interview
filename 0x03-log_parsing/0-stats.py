@@ -22,12 +22,16 @@ for line in sys.stdin:
         continue
 
     try:
-        status = int(parts[-2])
         size = int(parts[-1])
     except ValueError:
         continue
 
     total_files_size += size
+
+    try:
+        status = int(parts[-2])
+    except ValueError:
+        continue
 
     if status in codes:
         codes[status] += 1
@@ -35,10 +39,7 @@ for line in sys.stdin:
         codes[status] = 1
 
     if count % 10 == 0:
-        print(f"File size: {total_files_size}")
-        for code in sorted(codes.keys()):
-            print(f"{code}: {codes[code]}")
-    pass
+        print_stats()
 
 if count % 10 != 0:
     print_stats()
