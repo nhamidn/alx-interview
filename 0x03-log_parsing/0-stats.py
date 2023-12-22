@@ -3,6 +3,13 @@
 import sys
 
 
+def print_stats():
+    """Function that print the collected stats."""
+    print(f"File size: {total_files_size}")
+    for code in sorted(codes.keys()):
+        print(f"{code}: {codes[code]}")
+
+
 codes = {}
 count = 0
 total_files_size = 0
@@ -31,5 +38,7 @@ for line in sys.stdin:
         print(f"File size: {total_files_size}")
         for code in sorted(codes.keys()):
             print(f"{code}: {codes[code]}")
-        pass
     pass
+
+if count % 10 != 0:
+    print_stats()
