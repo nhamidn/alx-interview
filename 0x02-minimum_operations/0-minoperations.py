@@ -7,7 +7,7 @@ import math
 
 def minOperations(n):
     """Method that calculates the fewest number of operations."""
-    if n <= 0 :
+    if n <= 0:
         return 0
     l2 = int(math.log2(n) * 2)
     half = int(n / 2)
