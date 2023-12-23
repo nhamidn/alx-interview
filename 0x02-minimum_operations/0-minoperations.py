@@ -16,10 +16,10 @@ def minOperations(n):
     while half:
         if num % half == 0:
             num_op += 1
-            num_op += int(num / half)
-            half = int(half / 2)
+            num_op += (int(num / half) - 1)
             num = half
+            half = int(half / 2)
         else:
             half -= 1
-    result = l2 if l2 < num_op else num_op
+    result = l2 if (l2 < num_op and pow(1, l2) == n) else num_op
     return result
