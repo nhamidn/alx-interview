@@ -34,7 +34,7 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
-    if sys.argv[1].isdigit():
+    try:
         num = int(sys.argv[1])
         if num < 4:
             print("N must be at least 4")
@@ -45,6 +45,6 @@ if __name__ == "__main__":
             solve(num, 1, solutions)
             if len(solutions) == num:
                 print(solutions)
-    else:
+    except ValueError:
         print("N must be a number")
         sys.exit(1)
