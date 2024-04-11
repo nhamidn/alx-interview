@@ -4,12 +4,30 @@
 
 
 import sys
+from typing import List
 
 
-def solve(n: int) -> None:
+def is_safe(x: int, y: int, solutions: List) -> bool:
+    """Function that check is a position is safe"""
+    for e in solutions:
+        if x == e[0] or y == e[1]:
+            return False
+        if abs(x - e[0]) == abs(y - e[1]):
+            return False
+    return True
+
+
+def solve(n: int, col: int, solutions: List) -> bool:
     """Function that solves the problem."""
-    print(n)
-    solutions = []
+    if col >= n:
+        return True
+    for i in range(n):
+        if is_safe(col, i, solutions):
+            solutions.append([col, i])
+            if solve(n, col + 1, solutions) is True:
+                return True
+            solutions.pop(col)
+    return False
 
 
 if __name__ == "__main__":
@@ -21,7 +39,12 @@ if __name__ == "__main__":
         if num < 4:
             print("N must be at least 4")
             sys.exit(1)
-        solve(num)
+        for i in range(num):
+            solutions = []
+            solutions.append([0, i])
+            solve(num, 1, solutions)
+            if len(solutions) == num:
+                print(solutions)
     else:
         print("N must be a number")
         sys.exit(1)
