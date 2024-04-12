@@ -20,12 +20,12 @@ def is_safe(x: int, y: int, solutions: List) -> bool:
 def solve(n: int, col: int, solutions: List) -> bool:
     """Function that solves the problem."""
     if col >= n:
+        print(solutions)
         return True
     for i in range(n):
         if is_safe(col, i, solutions):
             solutions.append([col, i])
-            if solve(n, col + 1, solutions) is True:
-                return True
+            solve(n, col + 1, solutions)
             solutions.pop(col)
     return False
 
@@ -43,8 +43,6 @@ if __name__ == "__main__":
             solutions = []
             solutions.append([0, i])
             solve(num, 1, solutions)
-            if len(solutions) == num:
-                print(solutions)
     except ValueError:
         print("N must be a number")
         sys.exit(1)
