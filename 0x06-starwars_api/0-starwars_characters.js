@@ -4,7 +4,7 @@ if (process.argv.length !== 2) {
   console.error('Expected at least one argument!');
   process.exit(1);
 }
-const filmApi = `https://swapi.dev/api/films/${process.argv[2]}/?format=json`;
+const filmApi = `https://swapi-api.alx-tools.com/api/films/${process.argv[2]}/?format=json`;
 
 request.get(filmApi, function (error, response, body) {
   if (error) {
