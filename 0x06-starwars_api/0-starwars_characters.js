@@ -1,12 +1,8 @@
 #!/usr/bin/node
 const request = require('request');
-if (process.argv.length !== 2) {
-  console.error('Expected at least one argument!');
-  process.exit(1);
-}
-const filmApi = `https://swapi-api.alx-tools.com/api/films/${process.argv[2]}/?format=json`;
+const filmApi = `https://swapi-api.alx-tools.com/api/films/${process.argv[2]}`;
 
-request.get(filmApi, function (error, response, body) {
+request.get(filmApi, async (error, response, body) => {
   if (error) {
     console.error('Error fetching film:', error);
     return;
@@ -18,17 +14,14 @@ request.get(filmApi, function (error, response, body) {
 
   const characters = JSON.parse(body).characters;
   for (const character of characters) {
-    request.get(character, function (ce, cr, cbody) {
-      if (ce) {
-        console.error('Error fetching character:', ce);
-        return;
-      }
-      if (cr.statusCode !== 200) {
-        console.error('Failed to fetch character:', cr.statusCode);
-        return;
-      }
-      const name = JSON.parse(cbody).name;
-      console.log(name);
+    await new Promise((resolve, reject) => {
+      request.get(character, (cerror, cresponse, cbody) => {
+        if (cerror) {
+          reject(cerror);
+        }
+        console.log(JSON.parse(cbody).name);
+        resolve();
+      });
     });
   }
 });
