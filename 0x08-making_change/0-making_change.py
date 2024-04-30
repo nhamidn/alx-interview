@@ -13,7 +13,8 @@ def makeChange(coins, total):
     dp = [sys.maxsize] * (total + 1)
     dp[0] = 0
     for c in coins:
-        for i in range(c, total + 1):
-            if dp[i - c] != -1:
-                dp[i] = min(dp[i], 1 + dp[i - c])
+        if c <= total:
+            for i in range(c, total + 1):
+                if dp[i - c] != -1:
+                    dp[i] = min(dp[i], 1 + dp[i - c])
     return dp[-1] if dp[-1] < sys.maxsize else -1
