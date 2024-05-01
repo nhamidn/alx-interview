@@ -10,11 +10,14 @@ def makeChange(coins, total):
     """
     if total <= 0:
         return 0
-    dp = [sys.maxsize] * (total + 1)
-    dp[0] = 0
+    dpv1 = {}
+    dpv1[0] = 0
     for c in coins:
         if c <= total:
             for i in range(c, total + 1):
-                if dp[i - c] != sys.maxsize:
-                    dp[i] = min(dp[i], 1 + dp[i - c])
-    return dp[-1] if dp[-1] < sys.maxsize else -1
+                prev = dpv1.get((i - c), sys.maxsize)
+                curr = dpv1.get(i, sys.maxsize)
+                if prev < sys.maxsize:
+                    dpv1[i] = min(curr, 1 + prev)
+    result = dpv1.get(total, -1)
+    return result
