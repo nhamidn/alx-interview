@@ -15,6 +15,7 @@ def makeChange(coins, total):
     for c in coins:
         if c <= total:
             for i in range(c, total + 1):
-                if dp[i - c] != sys.maxsize:
-                    dp[i] = min(dp[i], 1 + dp[i - c])
+                prev = i - c
+                if dp[prev] != sys.maxsize:
+                    dp[i] = min(dp[i], 1 + dp[prev])
     return dp[-1] if dp[-1] < sys.maxsize else -1
