@@ -1,11 +1,5 @@
 # 0x09. Island Perimeter
 
-**Weight**: 1  
-**Project Start**: May 6, 2024, 4:00 AM  
-**Deadline**: May 10, 2024, 4:00 AM  
-**Checker Release**: May 7, 2024, 4:00 AM  
-**Auto Review Deadline**: At the project deadline  
-
 ## Overview
 In the "0. Island Perimeter" project, you'll utilize your skills in algorithms, data structures (particularly 2D arrays or matrices), and conditional logic to solve a geometric problem set in a grid context. The main objective is to calculate the perimeter of a single island represented within a 2D array of integers. Mastery over navigating and analyzing 2D arrays and applying logical conditions to determine the perimeter of the island is essential.
 
