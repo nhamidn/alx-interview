@@ -27,8 +27,8 @@ def isWinner(x, nums):
     maria_wins = 0
     ben_wins = 0
 
-    for n in nums:
-        prime_count = prime_cache.get_prime_count(n)
+    for n in range(x):
+        prime_count = prime_cache.get_prime_count(nums[n])
 
         if prime_count % 2 == 0:
             ben_wins += 1
